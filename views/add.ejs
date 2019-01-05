@@ -1,0 +1,161 @@
+<% include partials/header %>
+<section class="text-center">
+    <div class="container" >
+        <form class="form-horizontal" role="form" method="POST" action="/add">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h2>Add new Item</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="name">Item Description</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <input type="text" name="item" class="form-control" id="item" placeholder="Rice"
+                                required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="name">Amount</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <input type="text" name="amount" class="form-control" id="name" placeholder="Weight of each"
+                                required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="name">Quantity</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                                <input type="text" name="quantity" class="form-control" id="name" placeholder="5"
+                                    required autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="email">Unit</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                            <select class="custom-select d-block w-100" name="unit" required>
+                                    <option>Choose...</option disabled>
+                                    <option value="Kg">Kg</option>
+                                    <option value="Liters">Liters</option>
+                                    <option value="Grams">Grams</option>
+                                    <option value="Bottles">Bottles</option>
+                                    <option value="Bags">Bags</option>
+                                  </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="name">Price</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                                <input type="text" name="price" class="form-control" id="name" placeholder="Price of one item only"
+                                    required autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="email">Category</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                <select class="custom-select d-block w-100" name="category" required>
+                                        <option>Choose...</option disabled>
+                                        <option value="Grains">Grains</option>
+                                        <option value="Oils">Oils</option>
+                                        <option value="Dairy">Dairy</option>
+                                        <option value="Vegetable">Vegetable</option>
+                                        <option value="Meat">Meat</option>
+                                        <option value="Legumes">Legumes</option>
+                                      </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put e-mail validation error messages here -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> ADD</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<% include partials/footer %>

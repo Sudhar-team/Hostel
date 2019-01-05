@@ -8,11 +8,6 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, unique: true, required: true },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    groupsinvolvedin: [{ groupid: String }],
-    count: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Count"
-    }],
     isAdmin: { type: Boolean, default: false }
 });
 

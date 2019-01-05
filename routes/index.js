@@ -2,21 +2,78 @@ const express = require("express"),
     router = express.Router(),
     passport = require("passport"),
     User = require("../models/user"),
-    middleware = require("../middleware"),
-    Group = require("../models/group");
-
+    Kitchen = require("../models/kitchen"),
+    middleware = require("../middleware");
 // root route
-router.get('/', (req, res) => {
-    Group.find({}, function (err, allGroups) {
+router.get('/', (req, res) => res.render("home"));
+
+
+router.get('/list', middleware.isLoggedIn, (req, res) => {
+    Kitchen.find({}, function (err, list) {
         if (err) {
             console.log(err);
         } else {
-            res.render("home", { groups: allGroups });
+            res.render("kitchen", { list: list });
         }
     });
 });
 
 
+router.get("/add", middleware.isLoggedIn, (req, res) => res.render("add"));
+// handle sign up logic
+router.post("/add", middleware.isLoggedIn, (req, res) => {
+
+    var item = req.body.item;
+    var amount = req.body.amount;
+    var quantity = req.body.quantity;
+    var unit = req.body.unit;
+    var price = req.body.price;
+    var category = req.body.category;
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    var newItem = { item: item, amount: amount, quantity: quantity, unit: unit, price: price, category: category, author: author }
+    Kitchen.create(newItem, function (err, newlyCreated) {
+        if (err) {
+            console.log(err);
+        } else {
+            req.flash("success", newItem.item + " is successfully added");
+            res.redirect("/");
+        }
+    })
+});
+
+router.get("/:id/edit", function (req, res) {
+    Kitchen.findById(req.params.id, function (err, foundItem) {
+        res.render("edit", { item: foundItem });
+    });
+});
+
+router.put("/:id", function (req, res) {
+
+    Kitchen.findByIdAndUpdate(req.params.id, req.body.item, function (err, updatedItem) {
+        if (err) {
+            console.log(err);
+            res.redirect("/list");
+        } else {
+            //redirect somewhere(show page)
+            console.log(updatedItem);
+            res.redirect("/list");
+        }
+    });
+});
+
+router.delete("/:id", function(req, res){
+       Kitchen.findByIdAndRemove(req.params.id, function(err){
+          if(err){
+            console.log(err);
+              res.redirect("/list");
+          } else {
+              res.redirect("/list");
+          }
+       });
+    });
 
 
 router.get("/register", (req, res) => res.render("register"));
@@ -49,6 +106,7 @@ router.post("/register", (req, res) => {
         });
     });
 });
+
 
 // show login form
 router.get("/login", (req, res) => res.render("login", { page: "login" }));

@@ -1,5 +1,4 @@
-const User = require("../models/user"),
-    Group = require("../models/group");
+const User = require("../models/user");
 
 
 
@@ -13,27 +12,27 @@ middlewareObj.isLoggedIn = function (req, res, next) {
     res.redirect("/login");
 };
 
-middlewareObj.checkGroupOwenership = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        Group.findById(req.params.id, (err, foundGroup) => {
-            if (err || !foundGroup) {
-                req.flash("error", "Group not found");
-                res.redirect("back");
-            } else {
-                // does the user own the campground
-                if (foundGroup.author.id.equals(req.user._id) || req.user.isAdmin) { next(); }
-                else {
-                    req.flash("error", "You don't have permission to do that");
-                    res.redirect("back");
-                }
-            }
-        });
-    }
-    else {
-        req.flash("error", "You need to be logged in to do that");
-        res.redirect("/login");
-    }
-};
+// middlewareObj.checkGroupOwenership = function (req, res, next) {
+//     if (req.isAuthenticated()) {
+//         Group.findById(req.params.id, (err, foundGroup) => {
+//             if (err || !foundGroup) {
+//                 req.flash("error", "Group not found");
+//                 res.redirect("back");
+//             } else {
+//                 // does the user own the campground
+//                 if (foundGroup.author.id.equals(req.user._id) || req.user.isAdmin) { next(); }
+//                 else {
+//                     req.flash("error", "You don't have permission to do that");
+//                     res.redirect("back");
+//                 }
+//             }
+//         });
+//     }
+//     else {
+//         req.flash("error", "You need to be logged in to do that");
+//         res.redirect("/login");
+//     }
+// };
 
 
 
