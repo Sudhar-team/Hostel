@@ -1,18 +1,47 @@
 <% include ./partials/header %>
 <link href="https://getbootstrap.com/docs/4.2/examples/album/album.css" rel="stylesheet">
 <main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
+<div class="container">
+    <div class="row">
+        <div class="column">
+             <section class="jumbotron text-center">
+            <div class="container">
             <h1 class="jumbotron-heading">KITCHEN SYSTEM</h1>
-            <p class="lead text-muted">EDITING IS STILL LEFT</p>
+
             <p>
                 <a href="/list" class="btn btn-primary my-2">LIST</a>
                 <a href="/add" class="btn btn-secondary my-2">ADD ITEM</a>
             </p>
+            </div>
+             </section>
+        </div>
+        <div class="column">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">FEEDBACK </h1>
+
+            <p>
+                <a href="/feedback" class="btn btn-primary my-2">POST FEEDBACK</a>
+                <a href="/feedbacklist" class="btn btn-secondary my-2">SHOW FEEDBACK</a>
+              
+            </p>
         </div>
     </section>
-
+     </div>
+        <div class="column">
+     <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Warden<br>Attendance </h1>
+           
+            <p>
+                <a href="/feedback" class="btn btn-primary my-2">POST ATTENDANCE</a>
+                <a href="/feedbacklist" class="btn btn-secondary my-2">SHOW ABSENTES</a>
+              
+            </p>
+        </div>
+    </section>
+     </div>
+</div>
 </main>
 
 <% include ./partials/footer %>

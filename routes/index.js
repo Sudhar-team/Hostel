@@ -3,6 +3,7 @@ const express = require("express"),
     passport = require("passport"),
     User = require("../models/user"),
     Kitchen = require("../models/kitchen"),
+    Feedback = require("../models/feedback"),
     middleware = require("../middleware");
 // root route
 router.get('/', (req, res) => res.render("home"));
@@ -134,6 +135,39 @@ router.get("/logout", (req, res) => {
     req.logout();
     req.flash("success", "Logged out successfully. Looking forward to seeing you again!");
     res.redirect("/");
+});
+
+
+
+router.get("/feedback", (req, res) => res.render("feedback"));
+
+
+router.post("/feedbacks", (req, res) => {
+
+    var names = req.body.names;
+    var phones = req.body.phone;
+    var email = req.body.email;
+    var texts = req.body.texts;
+    var newFeedback = { names: names, Phone: phones, email: email, feedback: texts}
+    Feedback.create(newFeedback, function (err, newlyCreated) {
+        if (err) {
+            console.log(err);
+        } else {
+            req.flash("success", newItem.item + " Thankyou for submitting feedback!!");
+            res.redirect("/");
+        }
+    })
+});
+
+
+router.get('/feedbacklist', (req, res) => {
+    Feedback.find({}, function (err, list) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("feedbacklist", { list: list });
+        }
+    });
 });
 
 module.exports = router;
