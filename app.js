@@ -15,8 +15,11 @@ const express = require("express"),
 const indexRoute = require("./routes/index");
 
 // connect to the DB
-let url = process.env.DATABASEURL || "mongodb://localhost/hostel"; // fallback in case global var not working
-mongoose.connect(url, { useNewUrlParser: true });
+const databaseUri = 'mongodb://abdul:wasey1@ds149914.mlab.com:49914/hostel';
+
+mongoose.connect(databaseUri,{ useNewUrlParser: true })
+      .then(() => console.log(`Database connected`))
+      .catch(err => console.log(`Database connection error: ${err.message}`));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
