@@ -1,7 +1,7 @@
 <% include partials/header %>
 <section class="text-center">
-    <div class="container" >
-        <form class="form-horizontal" role="form" method="POST" action="/<%=item._id%>?_method=PUT"  enctype="multipart/form-data">
+    <div class="container">
+        <form class="form-horizontal" action="/<%= item._id %>?_method=PUT"  method="POST">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -17,8 +17,7 @@
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                            <input type="text" name="item[item]" class="form-control" id="item" value="<%=item.item%>" placeholder="Rice"
-                            autocomplete="off"  required autofocus>
+                            <input type="text" name="item" class="form-control"  value="<%=item.item%>" autocomplete="off" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -38,8 +37,8 @@
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                            <input type="text" name="item[amount]" class="form-control" id="name"  value="<%=item.amount%>" placeholder="Weight of each"
-                            autocomplete="off"   required autofocus>
+                            <input type="text" name="amount" class="form-control" id="name" value="<%=item.amount%>"
+                                autocomplete="off" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -52,26 +51,25 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col-md-3 field-label-responsive">
-                        <label for="name">Quantity</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                                <input type="text" name="item[quantity]" class="form-control"  value="<%=item.quantity%>" id="name" placeholder="5"
-                                autocomplete="off"  required autofocus>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-control-feedback">
-                            <span class="text-danger align-middle">
-                                <!-- Put name validation error messages here -->
-                            </span>
+                <div class="col-md-3 field-label-responsive">
+                    <label for="name">Quantity</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <input type="text" name="quantity" class="form-control" value="<%=item.quantity%>" autocomplete="off" required autofocus>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
                     <label for="email">Unit</label>
@@ -80,14 +78,16 @@
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <select class="custom-select d-block w-100" name="item[unit]" autocomplete="off"  required>
-                                    <option value="<%=item.unit%>"><%=item.unit%></option disabled>
-                                    <option value="Kg">Kg</option>
-                                    <option value="Liters">Liters</option>
-                                    <option value="Grams">Grams</option>
-                                    <option value="Bottles">Bottles</option>
-                                    <option value="Bags">Bags</option>
-                                  </select>
+                            <select class="custom-select d-block w-100" name="unit" autocomplete="off" required>
+                                <option value="<%=item.unit%>">
+                                    <%=item.unit%>
+                                </option disabled>
+                                <option value="Kg">Kg</option>
+                                <option value="Liters">Liters</option>
+                                <option value="Grams">Grams</option>
+                                <option value="Bottles">Bottles</option>
+                                <option value="Bags">Bags</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -100,54 +100,57 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col-md-3 field-label-responsive">
-                        <label for="name">Price</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                                <input type="text" name="item[price]" class="form-control" value="<%=item.price%>" id="name" placeholder="Price of one item only"
-                                autocomplete="off" required autofocus>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-control-feedback">
-                            <span class="text-danger align-middle">
-                                <!-- Put name validation error messages here -->
-                            </span>
+                <div class="col-md-3 field-label-responsive">
+                    <label for="name">Price</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <input type="text" name="price" class="form-control" value="<%=item.price%>" id="name"
+                                placeholder="Price of one item only" autocomplete="off" required autofocus>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div class="row">
-                    <div class="col-md-3 field-label-responsive">
-                        <label for="email">Category</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                                <select class="custom-select d-block w-100" autocomplete="off"  name="item[category]" required>
-                                        <option value="<%=item.category%>"><%=item.category%></option disabled>
-                                        <option value="Grains">Grains</option>
-                                        <option value="Oils">Oils</option>
-                                        <option value="Dairy">Dairy</option>
-                                        <option value="Vegetable">Vegetable</option>
-                                        <option value="Meat">Meat</option>
-                                        <option value="Legumes">Legumes</option>
-                                      </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-control-feedback">
-                            <span class="text-danger align-middle">
-                                <!-- Put e-mail validation error messages here -->
-                            </span>
+                <div class="col-md-3 field-label-responsive">
+                    <label for="email">Category</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                            <select class="custom-select d-block w-100" autocomplete="off" name="category"
+                                required>
+                                <option value="<%=item.category%>">
+                                    <%=item.category%>
+                                </option disabled>
+                                <option value="Grains">Grains</option>
+                                <option value="Oils">Oils</option>
+                                <option value="Dairy">Dairy</option>
+                                <option value="Vegetable">Vegetable</option>
+                                <option value="Meat">Meat</option>
+                                <option value="Legumes">Legumes</option>
+                            </select>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">

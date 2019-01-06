@@ -45,15 +45,21 @@ router.post("/add", middleware.isLoggedIn, (req, res) => {
     })
 });
 
-router.get("/:id/edit", function (req, res) {
+router.get("/:id/edit", middleware.isLoggedIn, function (req, res) {
     Kitchen.findById(req.params.id, function (err, foundItem) {
         res.render("edit", { item: foundItem });
     });
 });
 
-router.put("/:id", function (req, res) {
-
-    Kitchen.findByIdAndUpdate(req.params.id, req.body.item, function (err, updatedItem) {
+router.put("/:id", middleware.isLoggedIn, function (req, res) {
+    var item = req.body.item;
+    var amount = req.body.amount;
+    var quantity = req.body.quantity;
+    var unit = req.body.unit;
+    var price = req.body.price;
+    var category = req.body.category;
+    var newItem = { item: item, amount: amount, quantity: quantity, unit: unit, price: price, category: category }
+    Kitchen.findByIdAndUpdate(req.params.id, newItem, function (err, updatedItem) {
         if (err) {
             console.log(err);
             res.redirect("/list");
@@ -65,17 +71,47 @@ router.put("/:id", function (req, res) {
     });
 });
 
-router.delete("/:id", function(req, res){
-       Kitchen.findByIdAndRemove(req.params.id, function(err){
-          if(err){
+router.delete("/:id", middleware.isLoggedIn, function (req, res) {
+    Kitchen.findOneAndDelete(req.params.id, function (err) {
+        if (err) {
             console.log(err);
-              res.redirect("/list");
-          } else {
-              res.redirect("/list");
-          }
-       });
+            res.redirect("/list");
+        } else {
+            res.redirect("/list");
+        }
     });
+});
 
+router.get("/feedback", (req, res) => res.render("feedback"));
+
+
+router.post("/feedback", (req, res) => {
+
+    var names = req.body.names;
+    var phones = req.body.phone;
+    var email = req.body.email;
+    var texts = req.body.texts;
+    var newFeedback = { names: names, Phone: phones, email: email, feedback: texts }
+    Feedback.create(newFeedback, function (err, newlyCreated) {
+        if (err) {
+            console.log(err);
+        } else {
+            req.flash("success", newFeedback.names + " Thankyou for submitting feedback!!");
+            res.redirect("/");
+        }
+    })
+});
+
+
+router.get('/feedbacklist', (req, res) => {
+    Feedback.find({}, function (err, list) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("feedbacklist", { list: list });
+        }
+    });
+});
 
 router.get("/register", (req, res) => res.render("register"));
 // handle sign up logic
@@ -139,35 +175,6 @@ router.get("/logout", (req, res) => {
 
 
 
-router.get("/feedback", (req, res) => res.render("feedback"));
 
-
-router.post("/feedbacks", (req, res) => {
-
-    var names = req.body.names;
-    var phones = req.body.phone;
-    var email = req.body.email;
-    var texts = req.body.texts;
-    var newFeedback = { names: names, Phone: phones, email: email, feedback: texts}
-    Feedback.create(newFeedback, function (err, newlyCreated) {
-        if (err) {
-            console.log(err);
-        } else {
-            req.flash("success", newItem.item + " Thankyou for submitting feedback!!");
-            res.redirect("/");
-        }
-    })
-});
-
-
-router.get('/feedbacklist', (req, res) => {
-    Feedback.find({}, function (err, list) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("feedbacklist", { list: list });
-        }
-    });
-});
 
 module.exports = router;

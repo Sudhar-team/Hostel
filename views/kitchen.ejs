@@ -29,7 +29,6 @@
     <tbody>
             <% var i=1;list.forEach(list => {%>
       <tr>
-          <form>
         <th scope="row"><%=i++%></th>
         <td><%=list.item%></td>
         <td><%=list.amount%></td>
@@ -38,7 +37,7 @@
         <td><%=list.price%></td>
         <td><%=list.category%></td>
         <td><a href="/<%=list._id%>/edit"><i class="fas fa-edit"></i></a></td>
-        <td> <form action="/<%= list._id %>?_method=DELETE" method="POST"><button type="submit"><i class="fas fa-trash"></button></i></form> </td>
+        <form action="/<%= list._id %>?_method=DELETE" method="POST"><td><input type = "submit" value="Submit" /></td></form> 
       </tr>
       <% })%>
       
